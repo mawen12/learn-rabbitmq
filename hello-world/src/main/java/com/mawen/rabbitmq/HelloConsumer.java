@@ -30,17 +30,8 @@ public class HelloConsumer {
 
     private static final String PASSWORD = "admin";
 
-    public static void main(String[] args) throws IOException, TimeoutException {
-        // 连接工厂
-        ConnectionFactory factory = new ConnectionFactory();
-        // 登录信息
-        factory.setHost(IP);
-        factory.setUsername(USERNAME);
-        factory.setPassword(PASSWORD);
-        // 创建连接
-        Connection connection = factory.newConnection();
-        // 创建信道
-        Channel channel = connection.createChannel();
+    public static void main(String[] args) throws Exception {
+        Channel channel = RabbitMqUtils.getChannel();
         // 消费消息
         /**
          * 1.消费的队列
@@ -51,8 +42,7 @@ public class HelloConsumer {
         channel.basicConsume(QUEUE_NAME, true, deliverCallback(), cancelCallback());
         log.info("消息接收完毕");
 
-        channel.close();
-        connection.close();
+        RabbitMqUtils.close(channel, true);
     }
 
     // 接受消息时的回调

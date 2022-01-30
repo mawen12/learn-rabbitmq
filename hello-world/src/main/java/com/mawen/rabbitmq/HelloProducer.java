@@ -26,16 +26,7 @@ public class HelloProducer {
 
 
     public static void main(String[] args) throws Exception {
-        // 连接工厂
-        ConnectionFactory factory = new ConnectionFactory();
-        // 登录信息
-        factory.setHost(IP);
-        factory.setUsername(USERNAME);
-        factory.setPassword(PASSWORD);
-        // 创建连接
-        Connection connection = factory.newConnection();
-        // 获取信道
-        Channel channel = connection.createChannel();
+        Channel channel = RabbitMqUtils.getChannel();
         // 借助信道来声明队列
         /**
          * 1.队列名称
@@ -56,8 +47,7 @@ public class HelloProducer {
         channel.basicPublish("", QUEUE_NAME, null, message.getBytes(StandardCharsets.UTF_8));
         System.out.println("消息发送完毕");
 
-        channel.close();
-        connection.close();
+        RabbitMqUtils.close(channel, true);
     }
 
 }

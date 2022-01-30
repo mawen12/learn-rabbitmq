@@ -7,6 +7,8 @@
     <version>${revision}</version>
     <modules>
         <module>hello-world</module>
+        <module>work-queues</module>
+        <module>commons-rabbitmq</module>
     </modules>
 
     <name>learn-rabbitmq</name>

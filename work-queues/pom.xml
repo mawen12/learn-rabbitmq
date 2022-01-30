@@ -9,11 +9,8 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>hello-world</artifactId>
+    <artifactId>work-queues</artifactId>
     <version>${revision}</version>
-
-    <name>hello-world</name>
-    <description>六大模式之Hello World</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -21,13 +18,6 @@
     </properties>
 
     <dependencies>
-        <!-- RabbitMQ 封装 -->
-        <dependency>
-            <groupId>com.mawen</groupId>
-            <artifactId>commons-rabbitmq</artifactId>
-            <version>${revision}</version>
-        </dependency>
-
         <!-- RabbitMQ 依赖客户端 -->
         <dependency>
             <groupId>com.rabbitmq</groupId>
@@ -47,5 +37,4 @@
             <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
     </dependencies>
-
 </project>
