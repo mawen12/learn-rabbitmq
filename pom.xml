@@ -34,6 +34,27 @@
         </dependencies>
     </dependencyManagement>
 
+    <profiles>
+        <profile>
+            <id>commons-rabbitmq</id>
+            <modules>
+                <module>commons-rabbitmq</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>hello-world</id>
+            <modules>
+                <module>hello-world</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>work-queues</id>
+            <modules>
+                <module>work-queues</module>
+            </modules>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
             <plugin>

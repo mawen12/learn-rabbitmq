@@ -18,6 +18,13 @@
     </properties>
 
     <dependencies>
+        <!-- RabbitMQ 封装 -->
+        <dependency>
+            <groupId>com.mawen</groupId>
+            <artifactId>commons-rabbitmq</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
         <!-- RabbitMQ 依赖客户端 -->
         <dependency>
             <groupId>com.rabbitmq</groupId>

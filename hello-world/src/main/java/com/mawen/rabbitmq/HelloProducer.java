@@ -1,10 +1,10 @@
 package com.mawen.rabbitmq;
 
 import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
 
 import java.nio.charset.StandardCharsets;
+
+import static com.mawen.rabbitmq.RabbitMQConstant.*;
 
 /**
  * 生产者
@@ -13,18 +13,6 @@ import java.nio.charset.StandardCharsets;
  * @create 2022-01-29 20:47
  */
 public class HelloProducer {
-    /**
-     * 队列名称
-     */
-    private static final String QUEUE_NAME = "hello";
-
-    private static final String IP = "192.168.190.190";
-
-    private static final String USERNAME = "admin";
-
-    private static final String PASSWORD = "admin";
-
-
     public static void main(String[] args) throws Exception {
         Channel channel = RabbitMqUtils.getChannel();
         // 借助信道来声明队列
@@ -35,7 +23,7 @@ public class HelloProducer {
          * 4.autoDelete 最后一个消费者断开连接之后，该队列是否自动删除
          * 5.其他参数
          */
-        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        channel.queueDeclare(QUEUE_NAME_HELLO, !DURABLE, !EXCLUSIVE, !AUTO_DELETE, null);
         String message = "Hello World";
         // 借助信道来发送消息
         /**
@@ -44,10 +32,10 @@ public class HelloProducer {
          * 3.props 属性
          * 4.body 二进制消息体
          */
-        channel.basicPublish("", QUEUE_NAME, null, message.getBytes(StandardCharsets.UTF_8));
+        channel.basicPublish("", QUEUE_NAME_HELLO, null, message.getBytes(StandardCharsets.UTF_8));
         System.out.println("消息发送完毕");
 
-        RabbitMqUtils.close(channel, true);
+        RabbitMqUtils.close(channel, CLOSE_CONNECTION);
     }
 
 }
